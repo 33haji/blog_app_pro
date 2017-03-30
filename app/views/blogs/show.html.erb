@@ -1,0 +1,22 @@
+<% provide(:title, 'ブログ詳細') %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h2 class="show-title"><%= @blog.title %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="show-body">
+        <%= markdown(@blog.body).html_safe %>
+        <% if @blog.persisted? && @blog.image? %>
+          <div class="show-image">
+            <%= image_tag(@blog.image.url, :class => "blog-image", :align => "center") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div><%= link_to "Blog一覧", blogs_path %></div>
+</div>

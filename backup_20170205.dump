@@ -1,0 +1,273 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "schema_migrations" ("version" varchar NOT NULL);
+INSERT INTO "schema_migrations" VALUES('20161113144412');
+INSERT INTO "schema_migrations" VALUES('20161114013018');
+INSERT INTO "schema_migrations" VALUES('20161114015306');
+INSERT INTO "schema_migrations" VALUES('20161128012754');
+INSERT INTO "schema_migrations" VALUES('20161205014227');
+INSERT INTO "schema_migrations" VALUES('20161205020130');
+INSERT INTO "schema_migrations" VALUES('20170126141636');
+INSERT INTO "schema_migrations" VALUES('20170130024920');
+INSERT INTO "schema_migrations" VALUES('20170130142647');
+INSERT INTO "schema_migrations" VALUES('20170130143214');
+INSERT INTO "schema_migrations" VALUES('20170201005131');
+CREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" text, "body" text, "delete_flag" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image" varchar);
+INSERT INTO "blogs" VALUES(1,'【第1回】初投稿!!','【やったこと】
+・トップページ(Index)の作成
+・header, footerを作成
+・Blogモデルを作成し、indexとnewページの概要を作成
+【発見】
+・gem annotateを使うことでmodelにカラムなどの概要をコメント表示することができる
+・containerを使うと枠いっぱいに広げることができない(header)
+【次回の課題】
+・Blogページを充実させていく','t','2016-11-14','2016-12-05 02:18:43.144897',NULL);
+INSERT INTO "blogs" VALUES(2,'【第1回】初投稿!!','【やったこと】
+・トップページ(Index)の作成
+・header, footerを作成
+・Blogモデルを作成し、indexとnewページの概要を作成
+【発見】
+・gem annotateを使うことでmodelにカラムなどの概要をコメント表示することができる
+・containerを使うと枠いっぱいに広げることができない(header)
+【次回の課題】
+・Blogページを充実させていく','t','2016-11-14','2016-12-05 04:22:58.523323',NULL);
+INSERT INTO "blogs" VALUES(3,'【第1回】初投稿!!','【やったこと】
+・トップページ(Index)の作成
+・header, footerを作成
+・Blogモデルを作成し、indexとnewページの概要を作成
+【発見】
+・gem annotateを使うことでmodelにカラムなどの概要をコメント表示することができる
+・containerを使うと枠いっぱいに広げることができない(header)
+【次回の課題】
+・Blogページを充実させていく','t','2016-11-14','2016-12-05 04:22:55.326302',NULL);
+INSERT INTO "blogs" VALUES(4,'【第1回】初投稿!!','【やったこと】
+・トップページ(Index)の作成
+・header, footerを作成
+・Blogモデルを作成し、indexとnewページの概要を作成
+【発見】
+・gem annotateを使うことでmodelにカラムなどの概要をコメント表示することができる
+・containerを使うと枠いっぱいに広げることができない(header)
+【次回の課題】
+・Blogページを充実させていく','f','2016-11-14','2016-12-05 04:21:48.331259',NULL);
+INSERT INTO "blogs" VALUES(5,'【第2回】自分で作るの楽しい','【やったこと】
+・Blog一覧をテーブル表示に
+・Blogの変更・削除機能を追加
+【発見】
+・modelに新たなアクションを追加する場合はroutesでネストさせるとできる
+・Scaffoldなmodelはeditからupdateにアクションを移る際に何も特別なことをせずにDBを更新してくれる
+【次回の課題】
+・Blogのdeleteメソッドがうまく動作しないのでなんとかする!!','f','2016-11-15','2016-12-05 04:23:19.000354',NULL);
+INSERT INTO "blogs" VALUES(6,'【第3回】Blog機能は完成?','【やったこと】
+・Blogのdeleteメソッドを実装
+・Blogの検索機能を実装
+【発見】
+・Patchメソッドを自作して動かすには、routeで設定するだけでなく、Viewでpathに飛ばす際に:method => ‘patch''も必要
+・ransackは最強!!
+【次回の課題】
+・検索の項目でdelete_flagの条件を加える','f','2016-11-16','2016-12-05 04:27:05.704769',NULL);
+INSERT INTO "blogs" VALUES(7,'【第4回】レイアウトは苦手','#### やったこと
+* `プロフィール画面`を作成
+
+#### 発見
+* `image_tag`を使った場合は`image.jpg`でパスを指定できる
+* 画像はドラッグでアップロードできる
+* しかし、アップロードできない画像もある？(Twitterなど)
+
+#### 次回の課題
+* 未定','f','2016-11-22','2016-12-05 04:53:58.573853',NULL);
+INSERT INTO "blogs" VALUES(8,'【第5回】画像アップロード','#### やったこと
+* Blogに画像ファイルのアップロード機能を実装
+* Blogの`詳細画面`を作成
+
+#### 発見
+* 画像アップロードでは`CarrierWave`を利用(http://ruby-rails.hatenadiary.com/entry/20141015/1413300088)
+* modelに追加するのはStringカラムのみ
+* 画像の削除は`form`に`:remove_image`のチェックボックスを追加するだけで実現できる
+
+#### 次回の課題
+* `詳細画面`のレイアウトを改善する','f','2016-11-28','2016-12-05 04:54:24.005283','__________2016-11-28_12.11.26.png');
+INSERT INTO "blogs" VALUES(9,'【第6回】背景画像をつけるとそれっぽくなる','#### やったこと
+* 背景画像を枠いっぱいに表示できるよう修正
+* `home画面`を実装
+
+#### 発見
+* `jumbotron`を使っても枠いっぱいに背景画像を表示できなかった原因は、`applicationファイル`内で`body`の部分に`container`をかけてしまっていたためだった
+
+#### 次回の課題
+* ページングを実装する','f','2016-11-29','2016-12-05 04:54:36.417303','__________2016-11-29_11.27.45.png');
+INSERT INTO "blogs" VALUES(10,'【第7回】Workテーブル分けなくてよかったかも','#### やったこと
+* `kaminari`を使ってページングを実装(`pagenate`がうまく動作していないかも？)
+* dbの中身を削除してしまった
+* ブログの作業内容を保持する(現在は作業時間のみ)`Work`テーブルを作成
+* `Work`テーブルの新規作成・更新・削除を実装
+
+#### 発見
+* `db:migrate:reset`はDBを一度削除して作り直すコマンドなので中身が消えてしまう!!
+* `form`で複数のモデルを扱う場合は`fields_for`メソッドを利用する(http://qiita.com/ftyabu/items/cae912b211e985d74d58)
+* `has_one`モデルに対しては`build`は使えないので`build_[モデル名]`を使う
+* テーブルにはカラムが存在しないが`form`で利用したい項目を作るには`attr_accessor`を使う
+
+#### 次回の課題
+* `Work`テーブルを使った検索機能を実装する','t','2016-12-06 01:28:44.600546','2016-12-06 01:31:02.846780',NULL);
+INSERT INTO "blogs" VALUES(11,'【第7回】Workテーブルは分けなくてよかったかも','#### やったこと
+* `kaminari`を使ってページングを実装(`pagenate`がうまく動作していないかも？)
+* dbの中身を削除してしまった
+* ブログの作業内容を保持する(現在は作業時間のみ)`Work`テーブルを作成
+* `Work`テーブルの新規作成・更新・削除を実装
+
+#### 発見
+* `db:migrate:reset`はDBを一度削除して作り直すコマンドなので中身が消えてしまう!!
+* `form`で複数のモデルを扱う場合は`fields_for`メソッドを利用する(http://qiita.com/ftyabu/items/cae912b211e985d74d58)
+* `has_one`モデルに対しては`build`は使えないので`build_[モデル名]`を使う
+* テーブルにはカラムが存在しないが`form`で利用したい項目を作るには`attr_accessor`を使う
+
+#### 次回の課題
+* `Work`テーブルを使った検索機能を実装する','f','2016-12-06 01:30:17.235550','2016-12-06 01:33:32.636088',NULL);
+INSERT INTO "blogs" VALUES(12,'【第8回】ドロップダウンメニューが動かない!!','#### やったこと
+* `作業時間`を使った検索を実装
+
+#### 発見
+* 新規作成や更新を行った後にBlogページで戻ると`params[:q]`が`nil`になる
+
+#### 次回の課題
+* `ANALYSIS`のドロップダウンメニューを実装する
+* 作業時間解析ページを作成する','f','2016-12-06 02:58:56.696698','2016-12-06 02:58:56.696698','__________2016-12-06_11.57.24.png');
+INSERT INTO "blogs" VALUES(13,'【第9回】とりあえずグラフを作ってみる','#### やったこと
+* ドロップダウンメニューで`ANALYSIS`の中に`作業時間解析`を作成
+* 今月の作業時間のグラフを表示
+
+#### 発見
+* ドロップダウンメニューを実装できなかった原因は`application.js`に`//= require bootstrap-sprockets`を記述していなかったから
+* 年や月でmodelから検索をかける場合は`by_star`ライブラリの`by_year`や`by_month`が便利
+
+#### 次回の課題
+* 作業時間解析で任意の月で検索をかけられるように編集する','f','2016-12-12 04:20:56.761580','2016-12-12 04:20:56.761580','__________2016-12-12_13.18.41.png');
+INSERT INTO "blogs" VALUES(14,'【第10回】微妙な出来だが…','#### やったこと
+* `analysis`で前の月と次の月に移るリンクを作成
+
+#### 発見
+* `link_to`で`params`を渡すには、`controller`と`action`でpathを指定する必要がある？
+* `link_to`でoptionとして`params`をいくつでも渡すことができる
+* `by_month`で検索すると`年`は今年の年になる
+
+#### 次回の課題
+* Railsの知識を登録する機能を実装する(knowledge)','f','2017-01-25 14:59:31.534389','2017-01-25 14:59:58.825811','__________2017-01-25_23.32.31.png');
+INSERT INTO "blogs" VALUES(15,'【第11回】tipsページはオシャレに作る!!','#### やったこと
+* `tips`ページのジャンル画像を表示
+
+#### 発見
+* imgタグのclassで`img-responsive`を加えることで画像サイズを枠に対応させて表示することができる
+
+#### 次回の課題
+* `tips`ページを作り上げていく','f','2017-01-28 13:27:50.099026','2017-01-28 13:27:50.099026','__________2017-01-28_22.24.07.png');
+INSERT INTO "blogs" VALUES(16,'【第12回】修論発表の合間に','#### やったこと
+* `tip_genre`のmodelを作成し、`new`する処理を追加
+* `tip_genre`を追加し、それを並べて表示する処理を実装
+
+#### 次回の課題
+* `tips`ページを作り上げていく','f','2017-01-30 15:26:00.627964','2017-01-30 15:26:00.627964','__________2017-01-31_0.21.51.png');
+INSERT INTO "blogs" VALUES(17,'【第13回】Tipページがダサ過ぎる!!!','#### やったこと
+* `tipモデル`の`typeカラム`を削除
+* `Tipページ`の作成
+
+#### 発見
+* `form`で`select_box`の要素にDBからそのまま値を持ってきたい場合は`collection_select`を利用する(http://qiita.com/satomyumi/items/b58888506e41d1370fd1)
+* 画像の横のテキストを上下中央揃えするためには`vertical-align: middle;`を使う
+
+#### 次回の課題
+* `Tipページを改善する`
+* 次の課題に進む','f','2017-02-01 07:56:37.115973','2017-02-01 07:56:37.115973','__________2017-02-01_16.55.09.png');
+INSERT INTO "blogs" VALUES(18,'【第14回】tipsを登録しただけ','#### やったこと
+* `tip`ページに情報を登録する
+
+#### 次回の課題
+* `blogページ`のページングを改善する','f','2017-02-02 16:10:24.151269','2017-02-02 16:10:24.151269',NULL);
+CREATE TABLE "works" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "required_time" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "blog_id" integer DEFAULT 0 NOT NULL);
+INSERT INTO "works" VALUES(1,2,'2016-12-05 02:16:01.628391','2016-12-05 02:16:01.628391',0);
+INSERT INTO "works" VALUES(2,2,'2016-11-14','2016-12-05 04:21:48.334316',0);
+INSERT INTO "works" VALUES(3,2,'2016-11-15','2016-12-05 04:23:19.002789',0);
+INSERT INTO "works" VALUES(4,2,'2016-11-16','2016-12-05 04:27:05.706384',0);
+INSERT INTO "works" VALUES(5,2,'2016-11-22','2016-12-05 04:27:33.745843',0);
+INSERT INTO "works" VALUES(6,2,'2016-11-28','2016-12-05 04:28:03.398960',0);
+INSERT INTO "works" VALUES(7,2,'2016-11-29','2016-12-05 04:29:24.522210',0);
+INSERT INTO "works" VALUES(8,4,'2016-12-06 01:28:44.726976','2016-12-06 01:28:44.726976',0);
+INSERT INTO "works" VALUES(9,4,'2016-12-06 01:30:17.241730','2016-12-06 01:30:17.241730',0);
+INSERT INTO "works" VALUES(10,2,'2016-12-06 02:58:56.698419','2016-12-06 02:58:56.698419',0);
+INSERT INTO "works" VALUES(11,2,'2016-12-12 04:20:56.769818','2016-12-12 04:20:56.769818',0);
+INSERT INTO "works" VALUES(12,2,'2017-01-25 14:59:31.540444','2017-01-25 14:59:31.540444',0);
+INSERT INTO "works" VALUES(13,1,'2017-01-28 13:27:50.101781','2017-01-28 13:27:50.101781',15);
+INSERT INTO "works" VALUES(14,2,'2017-01-30 15:26:00.629709','2017-01-30 15:26:00.629709',16);
+INSERT INTO "works" VALUES(15,3,'2017-02-01 07:56:37.118967','2017-02-01 07:56:37.118967',17);
+INSERT INTO "works" VALUES(16,1,'2017-02-02 16:10:24.153065','2017-02-02 16:10:24.153065',18);
+CREATE TABLE "tip_genres" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image" varchar);
+INSERT INTO "tip_genres" VALUES(1,'Controller','2017-01-30 15:12:37.999257','2017-01-30 15:12:37.999257','controller.png');
+INSERT INTO "tip_genres" VALUES(2,'Model','2017-01-30 15:13:24.259637','2017-01-30 15:13:24.259637','model.png');
+INSERT INTO "tip_genres" VALUES(3,'View','2017-01-30 15:20:41.462187','2017-01-30 15:20:41.462187','view.png');
+INSERT INTO "tip_genres" VALUES(4,'Gemfile','2017-02-02 14:24:50.891130','2017-02-02 14:24:50.891130','gem.png');
+INSERT INTO "tip_genres" VALUES(5,'Form','2017-02-02 15:12:08.804620','2017-02-02 15:12:08.804620','form.png');
+INSERT INTO "tip_genres" VALUES(6,'Css','2017-02-02 15:50:06.923139','2017-02-02 15:50:06.923139','css.png');
+CREATE TABLE "tips" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" text, "detail" text, "delete_flag" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "genre_id" integer DEFAULT 0 NOT NULL);
+INSERT INTO "tips" VALUES(1,'formでselectボックスを使う場合','`select`ボックスの要素をDBから直接持ってきたい場合は`collection_select`を使う(http://qiita.com/satomyumi/items/b58888506e41d1370fd1)','f','2017-02-01 05:10:20.158086','2017-02-01 05:10:20.158086',3);
+INSERT INTO "tips" VALUES(2,'formでselectボックスを使う場合','`select`ボックスの要素をDBから直接持ってきたい場合は`collection_select`を使う(http://qiita.com/satomyumi/items/b58888506e41d1370fd1)','t','2017-02-01 05:11:21.165975','2017-02-02 14:14:55.067266',3);
+INSERT INTO "tips" VALUES(3,'formでselectボックスを使う場合','`select`ボックスの要素をDBから直接持ってきたい場合は`collection_select`を使う(http://qiita.com/satomyumi/items/b58888506e41d1370fd1)','t','2017-02-01 05:12:32.341353','2017-02-02 14:14:49.286846',3);
+INSERT INTO "tips" VALUES(4,'schemaをmodelに書き出してくれるgem','`gem ''annotate''`を追加すると、tableのschemaをコメントとしてmodelに表示することができる。','f','2017-02-02 14:28:51.247327','2017-02-02 14:28:51.247327',4);
+INSERT INTO "tips" VALUES(5,'markdown形式に対応するgem','`gem ''redcarpet''`を追加し、helperにメソッドを記入することでmarkdownに対応させることができる(http://qiita.com/hkengo/items/978ea1874cf7e07cdbfc)。','f','2017-02-02 14:39:16.181799','2017-02-02 14:39:16.181799',4);
+INSERT INTO "tips" VALUES(6,'画像アップロードを可能にするgem','1. `gem ''carrierwave''`を追加
+2. `rails g uploader Image`コマンドでアップローダーを生成
+3. `mount_uploader :image, ImageUploader`をmodelに記入する
+4. `<%= image_tag @tip_genre.image.url %>`等で画像アップロードの入力フィールドを追加する
+','f','2017-02-02 14:51:30.375255','2017-02-02 14:51:30.375255',4);
+INSERT INTO "tips" VALUES(7,'複数のレコードを作成する','#### 親と子の要素を一度に作成する場合
+* modelに`accepts_nested_attributes_for :books`を記入
+* `form_for`の内部に`<%= f.fields_for :books do |b| %>`を追加して要素を入れる
+* controller側で`user_params`に`books_attributes: [:title, published_at]`を入れることで同時に保存できる
+
+
+#### model間に関係がない場合
+* `f.field`の代わりに`<%= fields_for @corporation, new_corporation_params do |c| %>`のように記入する
+
+http://qiita.com/ftyabu/items/cae912b211e985d74d58','f','2017-02-02 15:18:51.147225','2017-02-02 15:22:58.757470',5);
+INSERT INTO "tips" VALUES(8,'modelの要素を追加したい場合','modelにカラムは存在しないが、formなどでそのmodelの要素として利用したい場合は`attr_accessor :baseLength`と書くことで追加できる。','f','2017-02-02 15:22:26.765776','2017-02-02 15:22:26.765776',2);
+INSERT INTO "tips" VALUES(9,'年や月でmodelに検索をかける場合','`gem ''by_star''`を追加し、`.by_year(2013)`のようにメソッドを書くことで検索ができる(defaultは`created_at`カラムから検索がかかる。他のカラムから検索する場合は`.by_year(2013, field: :hogehoge_at)`のように書く)
+
+
+※`by_month`で取得すると年は今年になる
+
+
+http://xoyip.hatenablog.com/entry/2015/01/14/232659','f','2017-02-02 15:36:06.544578','2017-02-02 15:45:25.255412',2);
+INSERT INTO "tips" VALUES(10,'link_toにパラメータを渡す方法','`<%= link_to ''test'', controller: "tests", action: "index", company_id: 3>`のようにoptionとして複数書くことができる
+
+(http://qiita.com/To_BB/items/fe9cada1a0bcfe5e3efb)','f','2017-02-02 15:41:38.987192','2017-02-02 15:41:38.987192',3);
+INSERT INTO "tips" VALUES(11,'画像サイズを枠に対応させる','imgタグで`class: "img-responsive"`を記入する','f','2017-02-02 15:52:04.673087','2017-02-02 15:52:04.673087',6);
+INSERT INTO "tips" VALUES(12,'selectボックスをDBから持ってくる','`form_for`の内部にselectボックスの項目をDBから持ってくる場合は、`<%= f.collection_select :origin_id, Origin.all, :id, :name %>`と書く。(それぞれの意味は、`<%= f.collection_select <属性名>, <プルダウンメニュー表示用の配列データ>, <valueとして扱うカラム名>,  <表示用のカラム名>, <オプション> %>`)
+
+
+http://qiita.com/satomyumi/items/b58888506e41d1370fd1','f','2017-02-02 15:59:49.267421','2017-02-02 15:59:49.267421',5);
+INSERT INTO "tips" VALUES(13,'画像横の文字列を上下中央揃えするcss','`vertical-align: middle;`を追加する','f','2017-02-02 16:04:17.230688','2017-02-02 16:04:17.230688',6);
+INSERT INTO "tips" VALUES(14,'ページングを実装するgem','`gem ''kaminari''`を追加し、controller側で`.page(params[:page])`、viewで`<%= paginate @songs %>`を書くことでページングを実装できる。
+
+
+※`gem ''kaminari-bootstrap''`を追加することでbootstrapの見た目に変更することができる。
+
+※kaminariの設定を行うには`rails g kaminari:config`コマンドで設定ファイルを作成し、`config/initializers/kaminari_config.rb`ファイルを編集する
+
+(http://wonderwall.hatenablog.com/entry/2015/08/09/094130)','f','2017-02-03 02:43:01.762836','2017-02-03 02:45:39.887678',4);
+INSERT INTO "tips" VALUES(15,'文字列をmodelのクラスオブジェクトへ変換する方法','クラス名(`"User"`)をStringからmodelのクラスオブジェクトに変換するには`constantize`を使う(例：`"User".constantize`)
+
+
+(http://ruby-rails.hatenadiary.com/entry/20141216/1418729961#activesupport-tableize)','f','2017-02-05 11:50:13.216043','2017-02-05 11:50:13.216043',2);
+INSERT INTO "tips" VALUES(16,'文字列をメソッド名として利用する場合','メソッド名と同様の文字列(例：first)をメソッドとしてそのまま利用したい場合、`send`メソッドを使うことで実現できる。
+
+```ruby
+str = ''first''
+model = Model.all.send(str)
+```
+
+http://qiita.com/nsatohiro/items/583385b7c2c7dea41e87','f','2017-02-05 13:02:02.363964','2017-02-05 13:02:02.363964',2);
+DELETE FROM sqlite_sequence;
+INSERT INTO "sqlite_sequence" VALUES('blogs',18);
+INSERT INTO "sqlite_sequence" VALUES('works',16);
+INSERT INTO "sqlite_sequence" VALUES('tip_genres',6);
+INSERT INTO "sqlite_sequence" VALUES('tips',16);
+CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
+COMMIT;

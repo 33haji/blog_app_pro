@@ -1,0 +1,31 @@
+
+[1mFrom:[0m /home/ubuntu/workspace/blog_app/app/controllers/blogs_controller.rb @ line 9 BlogsController#index:
+
+     [1;34m4[0m: [32mdef[0m [1;34mindex[0m
+     [1;34m5[0m:   @q = [1;34;4mBlog[0m.ransack(params[[33m:q[0m])
+     [1;34m6[0m:   blogs = @q.result
+     [1;34m7[0m:   binding.pry
+     [1;34m8[0m:   [1;34m# 検索[0m
+ =>  [1;34m9[0m:   [32mif[0m !params[[33m:q[0m].nil?
+    [1;34m10[0m:     [1;34m# "削除されたBlogを表示しない"にチェックが入っている場合[0m
+    [1;34m11[0m:     [32mif[0m params[[33m:q[0m][[33m:delete_flag_check[0m] == [31m[1;31m'[0m[31mtrue[1;31m'[0m[31m[0m
+    [1;34m12[0m:       blogs = blogs.where([35mdelete_flag[0m: [1;36mfalse[0m)
+    [1;34m13[0m:     [32mend[0m
+    [1;34m14[0m: 
+    [1;34m15[0m:     [1;34m# 作業時間のチェック[0m
+    [1;34m16[0m:     [32mif[0m !params[[33m:q[0m][[33m:work[0m].nil?
+    [1;34m17[0m:       [32mif[0m params[[33m:q[0m][[33m:work[0m][[33m:condition[0m] == [31m[1;31m'[0m[31m1[1;31m'[0m[31m[0m
+    [1;34m18[0m:         ids = [1;34;4mWork[0m.where([35mrequired_time[0m: params[[33m:q[0m][[33m:work[0m][[33m:required_time_form[0m]).select([33m:blog_id[0m)
+    [1;34m19[0m:       elseif params[[33m:q[0m][[33m:work[0m][[33m:condition[0m] == [31m[1;31m'[0m[31m2[1;31m'[0m[31m[0m
+    [1;34m20[0m:         ids = [1;34;4mWork[0m.where([31m[1;31m"[0m[31mrequired_time > ?[1;31m"[0m[31m[0m, params[[33m:q[0m][[33m:work[0m][[33m:required_time_form[0m]).select([33m:blog_id[0m)
+    [1;34m21[0m:       elseif params[[33m:q[0m][[33m:work[0m][[33m:condition[0m] == [31m[1;31m'[0m[31m3[1;31m'[0m[31m[0m
+    [1;34m22[0m:         ids = [1;34;4mWork[0m.where([31m[1;31m"[0m[31mrequired_time < ?[1;31m"[0m[31m[0m, params[[33m:q[0m][[33m:work[0m][[33m:required_time_form[0m]).select([33m:blog_id[0m)
+    [1;34m23[0m:       [32mend[0m
+    [1;34m24[0m:       blogs = blogs.where([35mid[0m: ids)
+    [1;34m25[0m:     [32mend[0m
+    [1;34m26[0m:   [32mend[0m
+    [1;34m27[0m:   
+    [1;34m28[0m:   @works = [1;34;4mWork[0m.all
+    [1;34m29[0m:   @blogs = blogs.page(params[[33m:page[0m]).order([35mcreated_at[0m: [33m:desc[0m)
+    [1;34m30[0m: [32mend[0m
+

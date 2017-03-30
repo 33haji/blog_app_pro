@@ -1,0 +1,9 @@
+<% provide(:title, '作業時間解析') %>
+<div class="analysis">
+    <div class="required_time_analysis">
+        <h1 style="text-align: center;"><%= @month %>月の作業時間</h1>
+        <%= line_chart @chart_data, xtitle: "Date", ytitle: "RequiredTime[h]"%>
+        <span class="prev-month"><%= link_to "前の月", controller: "analysis", action: "required_time", month: @month - 1, year: @year %></span>
+        <span class="next-month"><%= link_to "次の月", controller: "analysis", action: "required_time", month: @month + 1, year: @year %></span>
+    </div>
+</div>

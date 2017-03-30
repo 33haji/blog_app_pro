@@ -1,0 +1,23 @@
+<header class="navbar navbar-fixed-top">
+  <div class="container">
+    <div class="text-center text-white">
+      <h1>Rails開発日記</h1>
+    </div>
+    <nav>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "HOME", root_path %></li>
+        <li><%= link_to "BLOG", blogs_path %></li>
+        <li><%= link_to "PROFILE", profile_index_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">ANALYSIS<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "作業時間解析", analysis_required_time_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to "TIPS", tip_genres_path %></li>
+        <li><%= link_to "TABLES", manage_table_list_path %></li>
+        <li><%= link_to "SNS", sns_index_path %></li>
+      </ul>
+    </nav>
+  </div>
+</header>

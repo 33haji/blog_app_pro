@@ -1,0 +1,22 @@
+<% provide(:title, 'Tweet一覧') %>
+<div class="show_tweet">
+  <div class="container">
+    <h1 class="title">いいね数の多いTweetランキング</h1>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <% @favorite_tweets.each_with_index do |tweet, i| %>
+          <div class="tweet <%= i == 0 ? 'first-tweet' : '' %>">
+            <div class="favorite_rank">
+              <% if @ranking[i] != 0 %>
+                <%= image_tag("no_#{@ranking[i]}.jpg", height: '50px') %>
+              <% end %>
+              <span>いいね数：<strong><%= tweet[:fv] %></strong>　　<%= tweet[:date] %></span>
+            </div>
+            <%= image_tag(tweet[:image], height: '100px') %>
+            <span class="tweet-content"><%= tweet[:text] %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

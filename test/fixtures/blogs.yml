@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id          :integer          not null, primary key
+#  title       :text
+#  body        :text
+#  delete_flag :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  body: MyString
+  delete_flag: false
+
+two:
+  title: MyString
+  body: MyString
+  delete_flag: false

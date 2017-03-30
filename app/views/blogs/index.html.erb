@@ -1,0 +1,93 @@
+<% provide(:title, 'Blog一覧') %>
+<div class="container">
+  <h1>Blog一覧</h1>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">検索</div>
+    </div>
+    <div class="panel-body">
+      <%= search_form_for @q do |f| %>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :title_cont, "タイトル" %>
+              <%= f.text_field :title_cont, class: "form-control"%>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :body_cont, "本文" %>
+              <%= f.text_field :body_cont, class: "form-control"%>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-inline">
+              <%= f.label :created_at, "作成日" %>
+              <%= f.date_select :created_at_gt, {include_blank: true, use_month_numbers: true, date_separator: ' / '}, class: "form-control" %>〜
+              <%= f.date_select :created_at_lt, {include_blank: true, use_month_numbers: true, date_separator: ' / '}, class: "form-control" %>
+            </div>
+          </div>
+          <%= f.fields_for :work do |w| %>
+            <div class="col-sm-12">
+              <div class="form-inline">
+                <br>
+                <%= w.label :required_time_form, "作業時間" %>
+                <%= w.number_field :required_time_form, class: "form-control" %>
+                <%= w.select :condition, [["=", 1], [">", 2], ["<", 3]], :include_blank => true %>
+              </div>
+            </div>
+          <% end %>
+          <div class="col-sm-12">
+            <div class="form-inline">
+              <br>
+              <%= f.label :delete_flag_check, "削除されたBlogを表示しない" %>
+              <%= f.check_box :delete_flag_check, {:checked => true}, true, false %>
+            </div>
+          </div>
+        </div>
+        <%= f.submit '検索', class: "btn btn-primary" %>
+        <%= link_to 'クリア', blogs_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <%= link_to "新規登録", new_blog_path, class: "btn btn-primary" %><br>
+  
+  <%= page_entries_info @blogs %><br><%= paginate @blogs %>
+  <div class="row">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th width="30%">タイトル</th>
+        <th width="50%">本文</th>
+        <th width="5%">作業<br>時間</th>
+        <th width="10%">作成日</th>
+        <th width="5%">詳細<br>変更<br>削除</th>
+      </tr>
+      <% @blogs.each do |blog| %>
+        <tr>
+          <td>
+            <% if blog.persisted? && blog.image? %>
+              <strong><%= blog.title %></strong>
+            <% else %>
+              <%= blog.title %>
+            <% end %>
+          </td>
+          <td><%= markdown(blog.body).html_safe %></td>
+          <% if !@works.find_by(blog_id: blog.id).nil? %>
+            <td><%= @works.find_by(blog_id: blog.id).required_time %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td><%= blog.created_at.year %>年<%= blog.created_at.month %>月<%= blog.created_at.day %>日</td>
+          <td>
+            <%= link_to "詳細", blog_path(blog) %><br>
+            <%= link_to "変更", edit_blog_path(blog) %><br>
+            <%= link_to "削除", delete_blog_path(blog), :method => 'patch', data: {confirm: "本当に削除しますか？"}%>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+  <br><%= paginate @blogs %>
+</div>

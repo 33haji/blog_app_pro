@@ -1,0 +1,22 @@
+<% provide(:title, 'Instagram投稿一覧') %>
+<div class="show_instagram">
+  <div class="container">
+    <h1 class="title">いいね数の多いInstagram投稿ランキング</h1>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <% @favorite_articles.each_with_index do |article, i| %>
+          <div class="article <%= i == 0 ? 'first-article' : '' %>">
+            <div class="favorite_rank">
+              <% if @ranking[i] != 0 %>
+                <%= image_tag("no_#{@ranking[i]}.jpg", height: '50px') %>
+              <% end %>
+              <span>いいね数：<strong><%= article[:likes][:count] %></strong>　　<%= Time.at(article[:created_time].to_i).strftime('%Y-%m-%d %H:%M') %></span>
+            </div>
+            <%= image_tag(article.images.low_resolution.url, height: '100px') %>
+            <span class="article-content"><%= article.caption.text %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
