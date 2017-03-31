@@ -3,8 +3,8 @@
 # Table name: tips
 #
 #  id          :integer          not null, primary key
-#  title       :text
-#  detail      :text
+#  title       :text(65535)
+#  detail      :text(65535)
 #  delete_flag :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

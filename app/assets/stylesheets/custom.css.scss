@@ -21,6 +21,10 @@ header {
   .dropdown:hover > .dropdown-menu{
   display: block;
   }
+  .logout-button {
+    float: right;
+    margin-top: -5px;
+  }
 }
 
 /* footer */
@@ -66,9 +70,9 @@ body {
 
 /* profile画面 */
 .profile{
-  .jumbotron { 
+  .jumbotron {
     color: $white;
-    background:url(backgroundImage.png) center no-repeat; 
+    background:url(backgroundImage.png) center no-repeat;
     background-size: cover;
     .image-container {
       padding-top: 15px;
@@ -78,7 +82,7 @@ body {
       .profile-image {
         max-width: 360px;
         height: auto;
-      } 
+      }
     }
     .item {
       padding-top: 20px;
@@ -105,12 +109,12 @@ body {
     .blog-image {
       max-width: 700px;
       height: auto;
-    } 
+    }
 }
 
 /* home画面 */
 .home{
-  .jumbotron { 
+  .jumbotron {
     background:url(background_home.jpg) center no-repeat;
     background-position: center;
     background-attachment: fixed;

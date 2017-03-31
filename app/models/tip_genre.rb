@@ -3,10 +3,10 @@
 # Table name: tip_genres
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  image      :string
+#  image      :string(255)
 #
 
 class TipGenre < ActiveRecord::Base

@@ -24,6 +24,8 @@
       <% end %>
     <% end %>
   </div>
-  <%= link_to 'Add genre', new_tip_genre_url, class: "btn btn-warning btn-lg btn-block genre-btn" %>
-  <%= link_to 'Add tip', new_tip_url, class: "btn btn-danger btn-lg btn-block tip-btn" %>
+  <% if logged_in? %>
+    <%= link_to 'Add genre', new_tip_genre_url, class: "btn btn-warning btn-lg btn-block genre-btn" %>
+    <%= link_to 'Add tip', new_tip_url, class: "btn btn-danger btn-lg btn-block tip-btn" %>
+  <% end %>
 </div>

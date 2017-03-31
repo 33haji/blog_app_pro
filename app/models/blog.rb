@@ -3,12 +3,12 @@
 # Table name: blogs
 #
 #  id          :integer          not null, primary key
-#  title       :text
-#  body        :text
+#  title       :text(65535)
+#  body        :text(65535)
 #  delete_flag :boolean          default(FALSE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  image       :string
+#  image       :string(255)
 #
 
 class Blog < ActiveRecord::Base
